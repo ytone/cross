@@ -1,6 +1,6 @@
 var size = 3;
 
-function getFirstTable() {
+function getFirstTable(size) {
     var table = [];
     var cols = [];
     for (var i = 0; i < size; i++) {
@@ -19,7 +19,8 @@ var cross = new Vue({
         turn: "O",
         turnList: ["O", "X"],
         turnIndex: 1,
-        rows: getFirstTable(),
+        size: size,
+        rows: getFirstTable(size),
     },
     methods: {
         onClick: function (e) {
@@ -40,19 +41,19 @@ var cross = new Vue({
         decide: function () {
             var detectArray = [];
             // 縦
-            for (var c = 0; c < size; c++) {
+            for (var c = 0; c < cross.$data.size; c++) {
                 var colValue = [];
-                for (var r = 0; r < size; r++) {
+                for (var r = 0; r < cross.$data.size; r++) {
                     colValue.push(cross.$data.rows[r].cols[c].value);
                 }
                 detectArray.push(colValue);
             }
 
             // 横
-            for (var r = 0; r < size; r++) {
+            for (var r = 0; r < cross.$data.size; r++) {
                 var cols = cross.$data.rows[r].cols;
                 colValue = [];
-                for (var c = 0; c < size; c++) {
+                for (var c = 0; c < cross.$data.size; c++) {
                     colValue.push(cols[c].value);
                 }
                 detectArray.push(colValue);
@@ -60,7 +61,7 @@ var cross = new Vue({
 
             // 斜め左上から右下
             colValue = [];
-            for (var i = 0; i < size; i++) {
+            for (var i = 0; i < cross.$data.size; i++) {
                 colValue.push(cross.$data.rows[i].cols[i].value);
             }
             detectArray.push(colValue);
@@ -68,8 +69,8 @@ var cross = new Vue({
             // 斜め右上から左下
             colValue = [];
             var j;
-            for (var i = 0; i < size; i++) {
-                j = size - i - 1;
+            for (var i = 0; i < cross.$data.size; i++) {
+                j = cross.$data.size - i - 1;
                 colValue.push(cross.$data.rows[i].cols[j].value);
             }
             detectArray.push(colValue);
@@ -102,7 +103,7 @@ var cross = new Vue({
         reset: function () {
             cross.$data.turnIndex = 1;
             cross.$data.turn = cross.$data.turnList[0];
-            cross.$data.rows = getFirstTable();
+            cross.$data.rows = getFirstTable(cross.$data.size);
         },
     }
 });

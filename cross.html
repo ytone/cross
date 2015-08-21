@@ -1,5 +1,7 @@
 <html data-framework="vue">
-  <head></head>
+  <head>
+    <meta charset="utf-8">
+  </head>
   <body>
     <div id="demo">
       <h1>
@@ -13,6 +15,7 @@
           </td>
         </tr>
       </table>
+      <input type="number" v-on="change: reset" v-model="size">マス
       <div v-on="click: reset">リセット</div>
     </div>
   </body>
