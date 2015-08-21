@@ -1,0 +1,21 @@
+<html data-framework="vue">
+  <head></head>
+  <body>
+    <div id="demo">
+      <h1>
+        <span v-text="turnIndex"></span>手目<br />
+        <span v-text="turn"></span>の番
+      </h1>
+      <table>
+        <tr v-repeat="rows">
+          <td v-repeat="cols" v-on="click: onClick" style="border:1px solid; width:20px; height:20px;">
+            {{ value }}
+          </td>
+        </tr>
+      </table>
+      <div v-on="click: reset">リセット</div>
+    </div>
+  </body>
+  <script src="vue/node_modules/vue/dist/vue.js"></script>
+  <script src="vue/js/main.js"></script>
+</html>
